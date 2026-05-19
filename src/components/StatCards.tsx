@@ -1,11 +1,35 @@
+import { useState, useEffect } from "react";
 import { Car, Route, DollarSign, ShieldAlert } from "lucide-react";
 
 export default function StatCards() {
+  const [statsData, setStatsData] = useState({
+    activeDrivers: "84",
+    ongoingRides: "32",
+    commissionToday: "14500",
+    pendingVerifications: "18"
+  });
+
+  useEffect(() => {
+    fetch("/api/analytics/dashboard")
+      .then(r => r.json())
+      .then(data => {
+        if (data.stats) {
+          setStatsData({
+            activeDrivers: data.stats.activeDrivers.toString(),
+            ongoingRides: data.stats.ongoingRides.toString(),
+            commissionToday: data.stats.commissionToday.toLocaleString(),
+            pendingVerifications: data.stats.pendingVerifications.toString()
+          });
+        }
+      })
+      .catch(console.error);
+  }, []);
+
   const stats = [
-    { title: "Active Drivers", value: "84", change: "+12%", icon: <Car size={24} className="text-blue-500" />, trend: "up" },
-    { title: "Ongoing Rides", value: "32", change: "+5%", icon: <Route size={24} className="text-emerald-500" />, trend: "up" },
-    { title: "Commission Today (AFN)", value: "14,500", change: "-2%", icon: <DollarSign size={24} className="text-amber-500" />, trend: "down" },
-    { title: "Pending Verifications", value: "18", change: "Action Needed", icon: <ShieldAlert size={24} className="text-red-500" />, trend: "neutral" },
+    { title: "Active Drivers", value: statsData.activeDrivers, change: "Live", icon: <Car size={24} className="text-blue-500" />, trend: "up" },
+    { title: "Ongoing Rides", value: statsData.ongoingRides, change: "Live", icon: <Route size={24} className="text-emerald-500" />, trend: "up" },
+    { title: "Commission Today (AFN)", value: statsData.commissionToday, change: "Live", icon: <DollarSign size={24} className="text-amber-500" />, trend: "down" },
+    { title: "Pending Verifications", value: statsData.pendingVerifications, change: "Action Needed", icon: <ShieldAlert size={24} className="text-red-500" />, trend: "neutral" },
   ];
 
   return (

@@ -14,6 +14,7 @@ export default function Sidebar() {
     { name: "Riders", path: "/admin/riders", icon: <Users size={20} /> },
     { name: "Transactions", path: "/admin/transactions", icon: <DollarSign size={20} /> },
     { name: "Verifications", path: "/admin/verifications", icon: <ShieldCheck size={20} /> },
+    { name: "Support Tickets", path: "/admin/support", icon: <MessageSquare size={20} /> },
     { name: "Negotiation (Demo)", path: "/admin/negotiation", icon: <MessageSquare size={20} /> },
     { name: "Settings", path: "/admin/settings", icon: <Settings size={20} /> },
   ];

@@ -6,7 +6,13 @@ const RiderSchema = new mongoose.Schema({
   rating: { type: Number, default: 5.0 },
   status: { type: String, enum: ["active", "flagged", "banned"], default: "active" },
   walletBalance: { type: Number, default: 0 },
-  totalRides: { type: Number, default: 0 }
+  totalRides: { type: Number, default: 0 },
+  reviews: [{
+    rating: Number,
+    review: String,
+    date: Date,
+    author: String
+  }]
 }, { timestamps: true });
 
 export const Rider = mongoose.models.Rider || mongoose.model("Rider", RiderSchema);

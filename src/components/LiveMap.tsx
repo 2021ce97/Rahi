@@ -30,17 +30,21 @@ export default function LiveMap() {
   const [showZones, setShowZones] = useState(false);
 
   const [drivers, setDrivers] = useState<Driver[]>([]);
+  const [zones, setZones] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/drivers")
-      .then((res) => res.json())
-      .then((data) => {
-        setDrivers(data);
+    Promise.all([
+      fetch("/api/drivers").then(res => res.json()),
+      fetch("/api/zones").then(res => res.json())
+    ])
+      .then(([driversData, zonesData]) => {
+        setDrivers(driversData);
+        setZones(zonesData);
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching map drivers:", err);
+        console.error("Error fetching map data:", err);
         setLoading(false);
       });
   }, []);
@@ -111,19 +115,24 @@ export default function LiveMap() {
               ))}
               
               {/* Highlight some PD drop zones when heatmaps are enabled */}
-              {showZones && (
-                <>
-                  <Circle center={[34.5160, 69.1235]} pathOptions={{ fillColor: 'indigo', color: 'indigo', fillOpacity: 0.15, weight: 1 }} radius={1200}>
-                     <Popup>PD6 Demand Zone (High)</Popup>
-                  </Circle>
-                  <Circle center={[34.5450, 69.1760]} pathOptions={{ fillColor: 'orange', color: 'orange', fillOpacity: 0.15, weight: 1 }} radius={1000}>
-                     <Popup>Wazir Akbar Khan Zone (Medium)</Popup>
-                  </Circle>
-                  <Circle center={[34.5240, 69.1620]} pathOptions={{ fillColor: 'red', color: 'red', fillOpacity: 0.2, weight: 1 }} radius={800}>
-                     <Popup>Shar-e-Naw Zone (Very High)</Popup>
-                  </Circle>
-                </>
-              )}
+              {showZones && zones.map((zone) => {
+                 let color = "indigo";
+                 let opacity = 0.15;
+                 if (zone.type === "Very High Demand") { color = "red"; opacity = 0.2; }
+                 else if (zone.type === "Medium Demand") { color = "orange"; opacity = 0.15; }
+                 else if (zone.type === "Normal") { color = "gray"; opacity = 0.1; }
+                 
+                 return (
+                   <Circle 
+                     key={zone._id || zone.id}
+                     center={[zone.lat, zone.lng]} 
+                     pathOptions={{ fillColor: color, color: color, fillOpacity: opacity, weight: 1 }} 
+                     radius={zone.radius || 1000}
+                   >
+                      <Popup>{zone.name} ({zone.type})</Popup>
+                   </Circle>
+                 );
+              })}
             </MapContainer>
          )}
       </div>

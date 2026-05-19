@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Search, Filter, MoreVertical, CheckCircle2, ShieldAlert } from "lucide-react";
 
 interface Rider {
@@ -9,12 +9,14 @@ interface Rider {
   totalRides: number;
   rating: number;
   status: string;
+  reviews?: { rating: number, review: string, date: string, author: string }[];
 }
 
 export default function Riders() {
   const [searchTerm, setSearchTerm] = useState("");
   const [riders, setRiders] = useState<Rider[]>([]);
   const [loading, setLoading] = useState(true);
+  const [expandedRiderId, setExpandedRiderId] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/riders")
@@ -83,41 +85,70 @@ export default function Riders() {
                   </td>
                 </tr>
               ) : filteredRiders.map((rider) => (
-                <tr key={rider.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-700 font-bold">
-                        {rider.name.charAt(0)}
+                <React.Fragment key={rider.id}>
+                  <tr className="hover:bg-gray-50 transition-colors cursor-pointer" onClick={() => setExpandedRiderId(expandedRiderId === rider.id ? null : rider.id)}>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-3">
+                        <div className="h-10 w-10 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-700 font-bold">
+                          {rider.name.charAt(0)}
+                        </div>
+                        <div>
+                          <div className="font-medium text-gray-900">{rider.name}</div>
+                          <div className="text-xs text-gray-500">{rider.id}</div>
+                        </div>
                       </div>
-                      <div>
-                        <div className="font-medium text-gray-900">{rider.name}</div>
-                        <div className="text-xs text-gray-500">{rider.id}</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-700">{rider.phone}</td>
-                  <td className="px-6 py-4 text-sm text-gray-700">{rider.joinDate}</td>
-                  <td className="px-6 py-4 text-sm font-medium text-gray-700">{rider.totalRides}</td>
-                  <td className="px-6 py-4">
-                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border ${
-                      rider.status === 'Active' ? 'bg-green-50 text-green-700 border-green-200' :
-                      rider.status === 'Flagged' ? 'bg-red-50 text-red-700 border-red-200' :
-                      'bg-gray-50 text-gray-700 border-gray-200'
-                    }`}>
-                      {rider.status === 'Active' && <CheckCircle2 size={14} />}
-                      {rider.status === 'Flagged' && <ShieldAlert size={14} />}
-                      {rider.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-700 flex items-center gap-1">
-                    <span className="text-amber-500">★</span> {rider.rating}
-                  </td>
-                  <td className="px-6 py-4">
-                    <button className="text-gray-400 hover:text-gray-600 transition-colors">
-                      <MoreVertical size={18} />
-                    </button>
-                  </td>
-                </tr>
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-700">{rider.phone}</td>
+                    <td className="px-6 py-4 text-sm text-gray-700">{rider.joinDate}</td>
+                    <td className="px-6 py-4 text-sm font-medium text-gray-700">{rider.totalRides}</td>
+                    <td className="px-6 py-4">
+                      <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border ${
+                        rider.status === 'Active' ? 'bg-green-50 text-green-700 border-green-200' :
+                        rider.status === 'Flagged' ? 'bg-red-50 text-red-700 border-red-200' :
+                        'bg-gray-50 text-gray-700 border-gray-200'
+                      }`}>
+                        {rider.status === 'Active' && <CheckCircle2 size={14} />}
+                        {rider.status === 'Flagged' && <ShieldAlert size={14} />}
+                        {rider.status}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-700 flex items-center gap-1">
+                      <span className="text-amber-500">★</span> {rider.rating}
+                    </td>
+                    <td className="px-6 py-4">
+                      <button className="text-gray-400 hover:text-gray-600 transition-colors">
+                        <MoreVertical size={18} />
+                      </button>
+                    </td>
+                  </tr>
+                  {expandedRiderId === rider.id && (
+                    <tr className="bg-gray-50/50">
+                       <td colSpan={7} className="px-10 py-6 border-b border-t border-gray-100 shadow-inner">
+                          <h4 className="font-bold text-gray-700 mb-3 text-sm">Recent Feedback</h4>
+                          {(!rider.reviews || rider.reviews.length === 0) ? (
+                            <p className="text-xs text-gray-500">No driver reviews available for this rider yet.</p>
+                          ) : (
+                            <div className="space-y-3">
+                               {rider.reviews.map((r, i) => (
+                                 <div key={i} className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm max-w-2xl text-sm">
+                                    <div className="flex justify-between items-center mb-1">
+                                      <div className="font-bold text-gray-700">{r.author}</div>
+                                      <div className="text-xs text-gray-400">{r.date}</div>
+                                    </div>
+                                    <div className="flex text-amber-500 mb-2">
+                                       {[...Array(5)].map((_, idx) => (
+                                          <span key={idx} className={idx < r.rating ? "opacity-100" : "text-gray-300"}>★</span>
+                                       ))}
+                                    </div>
+                                    <p className="text-gray-600 italic">"{r.review || 'No written review provided.'}"</p>
+                                 </div>
+                               ))}
+                            </div>
+                          )}
+                       </td>
+                    </tr>
+                  )}
+                </React.Fragment>
               ))}
             </tbody>
           </table>

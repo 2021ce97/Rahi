@@ -11,6 +11,7 @@ import Drivers from "./pages/Drivers";
 import Riders from "./pages/Riders";
 import Transactions from "./pages/Transactions";
 import Verifications from "./pages/Verifications";
+import Support from "./pages/Support";
 import LiveNegotiation from "./pages/LiveNegotiation";
 import Zones from "./pages/Zones";
 import Diaspora from "./pages/Diaspora";
@@ -43,6 +44,7 @@ export default function App() {
           <Route path="riders" element={<Riders />} />
           <Route path="transactions" element={<Transactions />} />
           <Route path="verifications" element={<Verifications />} />
+          <Route path="support" element={<Support />} />
           <Route path="negotiation" element={<LiveNegotiation />} />
           <Route path="zones" element={<Zones />} />
           <Route path="diaspora" element={<Diaspora />} />

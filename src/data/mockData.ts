@@ -14,10 +14,10 @@ export const mockRides = [
 ];
 
 export const mockZones = [
-  { id: "Z-01", name: "PD6 (Karte Seh)", type: "High Demand", baseMultiplier: 1.2, activeDrivers: 12, status: "Active" },
-  { id: "Z-02", name: "Shar-e-Naw (PD10)", type: "Very High Demand", baseMultiplier: 1.5, activeDrivers: 24, status: "Active" },
-  { id: "Z-03", name: "Wazir Akbar Khan", type: "Medium Demand", baseMultiplier: 1.1, activeDrivers: 8, status: "Active" },
-  { id: "Z-04", name: "Macroyan (PD9)", type: "Normal", baseMultiplier: 1.0, activeDrivers: 15, status: "Active" },
+  { id: "Z-01", name: "PD6 (Karte Seh)", type: "High Demand", baseMultiplier: 1.2, activeDrivers: 12, status: "Active", lat: 34.5160, lng: 69.1235, radius: 1200 },
+  { id: "Z-02", name: "Shar-e-Naw (PD10)", type: "Very High Demand", baseMultiplier: 1.5, activeDrivers: 24, status: "Active", lat: 34.5240, lng: 69.1620, radius: 800 },
+  { id: "Z-03", name: "Wazir Akbar Khan", type: "Medium Demand", baseMultiplier: 1.1, activeDrivers: 8, status: "Active", lat: 34.5450, lng: 69.1760, radius: 1000 },
+  { id: "Z-04", name: "Macroyan (PD9)", type: "Normal", baseMultiplier: 1.0, activeDrivers: 15, status: "Active", lat: 34.5200, lng: 69.1950, radius: 900 },
 ];
 
 export const mockDiasporaGifts = [
@@ -40,10 +40,15 @@ export const mockVerifications = [
   { id: "V-502", name: "Dawoud Khan", phone: "+93 78 444 5566", status: "Pending", submittedAt: "1 hr ago" },
 ];
 
+export const mockTickets = [
+  { title: "Rider did not show up", description: "I waited for 15 minutes at the pickup location but the rider never arrived. I want my time compensated.", type: "driver_report", status: "open", reporterId: "D-101", reportedEntityId: "U-2002", createdAt: new Date().toISOString() },
+  { title: "Driver was rude", description: "The driver was yelling on the phone the whole time and drove unsafely.", type: "rider_report", status: "open", reporterId: "U-2003", reportedEntityId: "D-102", createdAt: new Date().toISOString() },
+];
+
 export const mockRiders = [
-  { id: "U-2001", name: "Rahim H.", phone: "+93 79 555 1234", joinDate: "2025-10-12", totalRides: 42, rating: 4.8, status: "Active" },
-  { id: "U-2002", name: "Obaid S.", phone: "+93 70 444 9876", joinDate: "2026-01-05", totalRides: 15, rating: 4.5, status: "Active" },
-  { id: "U-2003", name: "Mustafa R.", phone: "+93 78 333 5555", joinDate: "2026-03-20", totalRides: 4, rating: 4.2, status: "Active" },
-  { id: "U-2004", name: "Bismillah", phone: "+93 77 222 1111", joinDate: "2026-05-10", totalRides: 1, rating: 5.0, status: "Flagged" },
-  { id: "U-2005", name: "Safi M.", phone: "+93 79 111 9999", joinDate: "2025-08-30", totalRides: 87, rating: 4.9, status: "Active" },
+  { id: "U-2001", name: "Rahim H.", phone: "+93 79 555 1234", joinDate: "2025-10-12", totalRides: 42, rating: 4.8, status: "Active", reviews: [] },
+  { id: "U-2002", name: "Obaid S.", phone: "+93 70 444 9876", joinDate: "2026-01-05", totalRides: 15, rating: 4.5, status: "Active", reviews: [] },
+  { id: "U-2003", name: "Mustafa R.", phone: "+93 78 333 5555", joinDate: "2026-03-20", totalRides: 4, rating: 4.2, status: "Active", reviews: [] },
+  { id: "U-2004", name: "Bismillah", phone: "+93 77 222 1111", joinDate: "2026-05-10", totalRides: 1, rating: 5.0, status: "Flagged", reviews: [] },
+  { id: "U-2005", name: "Safi M.", phone: "+93 79 111 9999", joinDate: "2025-08-30", totalRides: 87, rating: 4.9, status: "Active", reviews: [] },
 ];
