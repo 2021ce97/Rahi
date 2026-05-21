@@ -49,7 +49,7 @@ export default function Transactions() {
         </div>
         <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
           <p className="text-sm font-medium text-gray-500 mb-1">Platform Commission</p>
-          <h3 className="text-xl font-bold text-amber-600">1,245 AFN</h3>
+          <h3 className="text-xl font-bold text-teal-600">1,245 AFN</h3>
         </div>
         <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
           <p className="text-sm font-medium text-gray-500 mb-1">Pending Payouts</p>
@@ -65,7 +65,7 @@ export default function Transactions() {
               onClick={() => setFilterType(type)}
               className={`px-4 py-2 text-sm rounded-lg transition-colors ${
                 filterType === type 
-                  ? "bg-amber-100 text-amber-700 font-medium" 
+                  ? "bg-teal-100 text-amber-700 font-medium" 
                   : "bg-gray-50 text-gray-600 hover:bg-gray-100"
               }`}
             >

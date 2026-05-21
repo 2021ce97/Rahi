@@ -1,6 +1,7 @@
 import StatCards from "../components/StatCards";
 import LiveMap from "../components/LiveMap";
 import RecentRides from "../components/RecentRides";
+import SosAlerts from "../components/SosAlerts";
 
 export default function Dashboard() {
   return (
@@ -9,6 +10,7 @@ export default function Dashboard() {
         <h1 className="text-2xl font-bold text-gray-900">Kabul Operations Overview</h1>
       </div>
       
+      <SosAlerts />
       <StatCards />
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

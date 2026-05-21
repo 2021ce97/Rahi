@@ -53,7 +53,7 @@ export default function Riders() {
             <input
               type="text"
               placeholder="Search riders by name, phone, or ID..."
-              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none"
+              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -113,7 +113,7 @@ export default function Riders() {
                       </span>
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-700 flex items-center gap-1">
-                      <span className="text-amber-500">★</span> {rider.rating}
+                      <span className="text-teal-500">★</span> {rider.rating}
                     </td>
                     <td className="px-6 py-4">
                       <button className="text-gray-400 hover:text-gray-600 transition-colors">
@@ -135,7 +135,7 @@ export default function Riders() {
                                       <div className="font-bold text-gray-700">{r.author}</div>
                                       <div className="text-xs text-gray-400">{r.date}</div>
                                     </div>
-                                    <div className="flex text-amber-500 mb-2">
+                                    <div className="flex text-teal-500 mb-2">
                                        {[...Array(5)].map((_, idx) => (
                                           <span key={idx} className={idx < r.rating ? "opacity-100" : "text-gray-300"}>★</span>
                                        ))}

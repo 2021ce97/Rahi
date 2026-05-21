@@ -13,6 +13,7 @@ import { Zone } from "./server/models/Zone";
 import { DiasporaGift } from "./server/models/DiasporaGift";
 import { Verification } from "./server/models/Verification";
 import { Ticket } from "./server/models/Ticket";
+import { sendSMS, SmsNotification } from "./server/services/smsService";
 import * as db from "./src/data/mockData";
 
 async function startServer() {
@@ -75,8 +76,14 @@ async function startServer() {
   };
 
   // API Route - System Status
+  
+  let mockSosAlerts = [];
+  app.get("/api/sos", (req, res) => {
+    res.json(mockSosAlerts);
+  });
+
   app.get("/api/health", (req, res) => {
-    res.json({ status: "ok", service: "Rahi Admin Backend", mongoDbConnected });
+    res.json({ status: "ok", service: "HamRah Admin Backend", mongoDbConnected });
   });
 
   // Data Fetching APIs (Phase 6: Actual MongoDB Data)
@@ -157,6 +164,14 @@ async function startServer() {
       }
     }
     res.json({ success: false });
+  });
+
+  app.get("/api/smsLogs", async (req, res) => {
+    if (mongoDbConnected) {
+      const logs = await SmsNotification.find().sort({ createdAt: -1 });
+      return res.json(logs);
+    }
+    res.json([]);
   });
 
   app.get("/api/analytics/dashboard", async (req, res) => {
@@ -257,8 +272,28 @@ async function startServer() {
       io.to(payload.targetSocketId).emit("chat_message", payload);
     });
 
-    socket.on("ride_status_update", (payload) => {
+    socket.on("ride_status_update", async (payload) => {
       io.to(payload.riderSocketId).emit("ride_status_update", payload);
+      
+      // If driver is updating status (e.g., "Arrived" or "Accepted"), check if rider is actually connected.
+      // If rider is missing from connected clients, simulate an SMS to them.
+      const riderSocket = io.sockets.sockets.get(payload.riderSocketId);
+      if (!riderSocket) {
+         let message = "";
+         if (payload.status === "Driver Arrived") {
+           message = `HamRah SMS: Your driver is waiting for you at the pickup location. (Driver ID: ${socket.id})`;
+         } else if (payload.status === "En Route to Pickup") {
+           message = `HamRah SMS: Driver is on the way to pick you up! Tracking is active.`;
+         } else if (payload.status === "Ride Finished") {
+           message = `HamRah SMS: Your ride has finished. Total: ${payload.fareAmount || 'N/A'} AFN. Thank you for using HamRah!`;
+         }
+
+         if (message) {
+            // Mock Phone Number for rider since we're using socket IDs in placeholder app
+            const dummyRiderPhone = "+93700000000"; 
+            await sendSMS(dummyRiderPhone, message);
+         }
+      }
     });
 
     socket.on("cancel_ride", (payload) => {
@@ -288,6 +323,25 @@ async function startServer() {
            console.error(e);
          }
        }
+    });
+
+    
+    socket.on("sos_alert", (payload) => {
+      socket.emit("server_log", `> [SYSTEM] 🚨 SOS Alert triggered by ${payload.role} at ${payload.location}`);
+      
+      const alert = {
+        id: "sos-" + Date.now(),
+        role: payload.role,
+        location: payload.location,
+        time: new Date().toISOString(),
+        socketId: socket.id,
+        resolved: false
+      };
+      
+      mockSosAlerts.unshift(alert);
+      
+      // Broadcast to admin or all
+      io.emit("admin_sos_alert", alert);
     });
 
     socket.on("disconnect", () => {

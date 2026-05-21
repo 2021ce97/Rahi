@@ -52,13 +52,13 @@ export default function Verifications() {
                 onClick={() => setSelectedId(v.id)}
                 className={`w-full text-left p-3 rounded-lg border transition-colors ${
                   selectedId === v.id 
-                    ? "bg-amber-50 border-amber-200" 
+                    ? "bg-teal-50 border-amber-200" 
                     : "border-transparent hover:bg-gray-50"
                 }`}
               >
                 <div className="flex justify-between items-start mb-1">
                   <span className="font-bold text-gray-900">{v.name}</span>
-                  <span className="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">{v.status}</span>
+                  <span className="text-xs bg-teal-100 text-amber-700 px-2 py-0.5 rounded-full">{v.status}</span>
                 </div>
                 <div className="text-sm text-gray-500">{v.id} • {v.phone}</div>
                 <div className="text-xs text-gray-400 mt-2">Submitted: {v.submittedAt}</div>
@@ -111,14 +111,14 @@ export default function Verifications() {
                       <div className="text-center">
                         <Upload size={32} className="mx-auto text-gray-300 mb-2" />
                         <span className="text-sm block mb-2">Driver Profile Photo</span>
-                        <button className="text-xs text-amber-600 font-medium">Upload override</button>
+                        <button className="text-xs text-teal-600 font-medium">Upload override</button>
                       </div>
                     </div>
                   </div>
                 </div>
                 
                 <div className="bg-gray-50 p-4 rounded-lg flex items-start gap-3">
-                   <CheckSquare className="text-amber-600 shrink-0 mt-0.5" />
+                   <CheckSquare className="text-teal-600 shrink-0 mt-0.5" />
                    <div>
                      <span className="font-bold text-gray-900 block text-sm">Automated Checks</span>
                      <span className="text-xs text-gray-500 block mt-1">Facial match: 92% | Document expiry: Valid | Watchlist: Clear</span>

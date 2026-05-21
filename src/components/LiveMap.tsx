@@ -66,15 +66,15 @@ export default function LiveMap() {
           <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 px-3 py-1.5 rounded-lg">
              <Filter size={14} className="text-gray-500" />
              <label className="flex items-center gap-1 cursor-pointer">
-               <input type="checkbox" checked={showOnline} onChange={(e) => setShowOnline(e.target.checked)} className="accent-amber-500" />
+               <input type="checkbox" checked={showOnline} onChange={(e) => setShowOnline(e.target.checked)} className="accent-teal-500" />
                <span className="w-2 h-2 rounded-full bg-green-500 ml-1"></span> Online
              </label>
              <label className="flex items-center gap-1 cursor-pointer ml-2">
-               <input type="checkbox" checked={showInRide} onChange={(e) => setShowInRide(e.target.checked)} className="accent-amber-500" />
-               <span className="w-2 h-2 rounded-full bg-amber-500 ml-1"></span> In-Ride
+               <input type="checkbox" checked={showInRide} onChange={(e) => setShowInRide(e.target.checked)} className="accent-teal-500" />
+               <span className="w-2 h-2 rounded-full bg-teal-500 ml-1"></span> In-Ride
              </label>
              <label className="flex items-center gap-1 cursor-pointer ml-2">
-               <input type="checkbox" checked={showOffline} onChange={(e) => setShowOffline(e.target.checked)} className="accent-amber-500" />
+               <input type="checkbox" checked={showOffline} onChange={(e) => setShowOffline(e.target.checked)} className="accent-teal-500" />
                <span className="w-2 h-2 rounded-full bg-gray-400 ml-1"></span> Offline
              </label>
           </div>
@@ -105,7 +105,7 @@ export default function LiveMap() {
                       <div className="text-xs text-gray-500">{driver.vehicle}</div>
                       <div className="text-xs mt-1 font-medium capitalize">
                         Status: <span className={
-                          driver.status === 'in-ride' ? 'text-amber-600' : 
+                          driver.status === 'in-ride' ? 'text-teal-600' : 
                           driver.status === 'online' ? 'text-green-600' : 'text-gray-500'
                         }>{driver.status}</span>
                       </div>

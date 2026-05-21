@@ -43,7 +43,7 @@ export default function Settings() {
                   <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <MessageSquare className="text-blue-500" /> SMS Fallback Configuration
                   </h2>
-                  <p className="text-sm text-gray-500">Configure how Rahi behaves when drivers or riders lose 3G/4G connectivity during a ride.</p>
+                  <p className="text-sm text-gray-500">Configure how HamRah behaves when drivers or riders lose 3G/4G connectivity during a ride.</p>
                </div>
 
                <div className="space-y-4">
@@ -75,7 +75,7 @@ export default function Settings() {
                      <div className="bg-white p-3 rounded-md text-sm font-sans flex gap-3 w-[70%]">
                         <Smartphone className="text-slate-400 shrink-0 mt-0.5" />
                         <div>
-                          <strong>Rahi:</strong> <br />
+                          <strong>HamRah:</strong> <br />
                           تاسو خپل منزل ته ورسیدئ. <br/>
                           کرایه: ۱۵۰ افغانۍ. <br/>
                           موټر چلوونکی: احمد. 
@@ -105,14 +105,14 @@ export default function Settings() {
                   <p className="text-sm text-gray-500">Control parameters for AI-driven Fare Suggestion and Chatbots.</p>
                </div>
                
-               <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg flex items-center gap-4">
-                  <div className="bg-amber-100 p-2 rounded-full"><MessageSquare className="text-amber-600" /></div>
+               <div className="bg-teal-50 border border-amber-200 p-4 rounded-lg flex items-center gap-4">
+                  <div className="bg-teal-100 p-2 rounded-full"><MessageSquare className="text-teal-600" /></div>
                   <div>
                     <div className="font-bold text-amber-900 text-sm">Base Fuel Price (AFN/L)</div>
                     <div className="text-xs text-amber-700">Claude uses this to seed dynamic fair-price generation.</div>
                   </div>
                   <div className="ml-auto">
-                    <input type="number" defaultValue={65} className="w-24 px-3 py-1.5 rounded-md border border-amber-300 text-amber-900 font-bold focus:ring-amber-500 focus:border-amber-500" />
+                    <input type="number" defaultValue={65} className="w-24 px-3 py-1.5 rounded-md border border-teal-300 text-amber-900 font-bold focus:ring-teal-500 focus:border-teal-500" />
                   </div>
                </div>
             </div>

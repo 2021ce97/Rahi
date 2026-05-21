@@ -102,7 +102,7 @@ export default function Diaspora() {
                   <td className="px-6 py-4 text-center">
                      <span className={`inline-flex px-2 py-1 text-xs rounded-full font-medium ${
                         gift.status === 'Redeemed' ? 'bg-green-100 text-green-700' :
-                        gift.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
+                        gift.status === 'Pending' ? 'bg-teal-100 text-amber-700' :
                         'bg-blue-100 text-blue-700'
                      }`}>
                        {gift.status}

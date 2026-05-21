@@ -23,7 +23,7 @@ export default function Sidebar() {
     <aside className="w-64 bg-gray-900 text-gray-300 flex flex-col h-full border-r border-gray-800">
       <div className="h-16 flex items-center px-6 border-b border-gray-800 bg-gray-950">
         <h1 className="text-xl font-bold text-white flex items-center gap-2">
-          <span className="text-amber-500">Rahi</span> Admin
+          <span className="text-teal-500">HamRah</span> Admin
         </h1>
       </div>
 
@@ -37,7 +37,7 @@ export default function Sidebar() {
                 to={item.path}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
                   active 
-                    ? "bg-amber-600/10 text-amber-500" 
+                    ? "bg-teal-600/10 text-teal-500" 
                     : "hover:bg-gray-800 hover:text-white"
                 }`}
               >

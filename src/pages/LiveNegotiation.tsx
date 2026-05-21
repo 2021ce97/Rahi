@@ -82,7 +82,7 @@ export default function LiveNegotiation() {
         {/* Rider View */}
         <div className="w-1/2 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col relative">
            <div className="bg-gray-950 p-4 shrink-0">
-             <div className="text-xs text-amber-500 font-bold uppercase tracking-wider mb-1">Rider View</div>
+             <div className="text-xs text-teal-500 font-bold uppercase tracking-wider mb-1">Rider View</div>
              <h2 className="text-white font-medium">Requesting Ride</h2>
            </div>
            
@@ -106,7 +106,7 @@ export default function LiveNegotiation() {
            <div className="p-4 flex-1 overflow-y-auto bg-gray-50 flex flex-col">
              {status === "not_started" ? (
                 <div className="m-auto text-center">
-                   <button onClick={triggerRequest} className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-transform active:scale-95">
+                   <button onClick={triggerRequest} className="bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-transform active:scale-95">
                       Request Ride via Socket.IO
                    </button>
                 </div>
@@ -124,7 +124,7 @@ export default function LiveNegotiation() {
                          key={bid.id} 
                          className="bg-white p-3 rounded-lg border border-amber-200 shadow-sm relative overflow-hidden"
                        >
-                         <div className="absolute top-0 left-0 w-1 h-full bg-amber-500"></div>
+                         <div className="absolute top-0 left-0 w-1 h-full bg-teal-500"></div>
                          <div className="flex justify-between items-start mb-2">
                            <div className="flex items-center gap-2">
                              <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
@@ -142,7 +142,7 @@ export default function LiveNegotiation() {
                          </div>
                          <button 
                            onClick={() => handleAccept(bid)}
-                           className="w-full mt-2 bg-amber-500 hover:bg-amber-600 text-white font-medium text-sm py-2 rounded transition-colors flex items-center justify-center gap-2"
+                           className="w-full mt-2 bg-teal-500 hover:bg-teal-600 text-white font-medium text-sm py-2 rounded transition-colors flex items-center justify-center gap-2"
                          >
                            <CheckCircle2 size={16} /> Accept {bid.fareAmount} AFN
                          </button>
@@ -175,7 +175,7 @@ export default function LiveNegotiation() {
           </div>
           <div className="flex-1 overflow-y-auto space-y-2 text-green-400">
              {serverLogs.map((log, index) => 
-               <motion.div key={index} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={log.includes("DRIVER:") ? "text-blue-300" : log.includes("RIDER") ? "text-amber-400" : "text-green-400"}>
+               <motion.div key={index} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={log.includes("DRIVER:") ? "text-blue-300" : log.includes("RIDER") ? "text-teal-400" : "text-green-400"}>
                  {log}
                </motion.div>
              )}

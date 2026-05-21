@@ -54,7 +54,7 @@ export default function Support() {
       <div className="flex justify-between items-center bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-            <MessageSquare className="text-amber-500" />
+            <MessageSquare className="text-teal-500" />
             Support & Feedback
           </h1>
           <p className="text-gray-500 text-sm mt-1">Manage rider reviews, resolve driver disputes, and handle user reports.</p>
@@ -68,7 +68,7 @@ export default function Support() {
             <input 
               type="text" 
               placeholder="Search tickets by ID or title..." 
-              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all"
+              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
             />
           </div>
           <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors">
@@ -120,7 +120,7 @@ export default function Support() {
                     </td>
                     <td className="px-6 py-4">
                       <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border ${
-                        t.status === 'open' ? 'bg-amber-50 text-amber-700 border-amber-200' :
+                        t.status === 'open' ? 'bg-teal-50 text-amber-700 border-amber-200' :
                         t.status === 'resolved' ? 'bg-green-50 text-green-700 border-green-200' :
                         'bg-gray-50 text-gray-700 border-gray-200'
                       }`}>
@@ -131,15 +131,15 @@ export default function Support() {
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-500">{new Date(t.createdAt).toLocaleDateString()}</td>
                     <td className="px-6 py-4 text-right">
-                       <button className="text-amber-600 hover:text-amber-800 text-sm font-medium transition-colors">
+                       <button className="text-teal-600 hover:text-amber-800 text-sm font-medium transition-colors">
                          Review
                        </button>
                     </td>
                   </tr>
                   
                   {expandedId === t._id && (
-                    <tr className="bg-amber-50/30">
-                       <td colSpan={6} className="px-10 py-6 border-b border-t border-amber-100/50 shadow-inner">
+                    <tr className="bg-teal-50/30">
+                       <td colSpan={6} className="px-10 py-6 border-b border-t border-teal-100/50 shadow-inner">
                           <h4 className="font-bold text-gray-900 mb-2">{t.title}</h4>
                           <p className="text-gray-700 text-sm mb-4 leading-relaxed">{t.description}</p>
                           
@@ -149,13 +149,13 @@ export default function Support() {
                                 <textarea 
                                   value={resolution}
                                   onChange={(e) => setResolution(e.target.value)}
-                                  className="w-full bg-gray-50 border border-gray-200 rounded p-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 mb-3 resize-none"
+                                  className="w-full bg-gray-50 border border-gray-200 rounded p-3 text-sm focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 mb-3 resize-none"
                                   placeholder="Enter resolution notes..."
                                   rows={3}
                                 />
                                 <div className="flex justify-end gap-2">
                                   <button onClick={() => setExpandedId(null)} className="px-4 py-2 border border-gray-300 text-gray-700 rounded text-sm font-medium hover:bg-gray-50">Cancel</button>
-                                  <button onClick={() => handleResolve(t._id)} disabled={!resolution} className="px-4 py-2 bg-amber-500 text-gray-900 rounded text-sm font-bold hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed hidden md:block">Mark as Resolved</button>
+                                  <button onClick={() => handleResolve(t._id)} disabled={!resolution} className="px-4 py-2 bg-teal-500 text-white rounded text-sm font-bold hover:bg-teal-400 disabled:opacity-50 disabled:cursor-not-allowed hidden md:block">Mark as Resolved</button>
                                 </div>
                              </div>
                           ) : (

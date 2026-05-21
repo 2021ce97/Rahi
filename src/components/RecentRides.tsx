@@ -31,7 +31,7 @@ export default function RecentRides() {
     <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 h-full flex flex-col">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-bold text-gray-900">Recent Rides</h2>
-        <button className="text-sm text-amber-600 font-medium hover:text-amber-700">View All</button>
+        <button className="text-sm text-teal-600 font-medium hover:text-amber-700">View All</button>
       </div>
       
       <div className="flex-1 overflow-y-auto pr-2 space-y-3">
@@ -63,7 +63,7 @@ export default function RecentRides() {
                 <span className="text-xs text-gray-500">{ride.time}</span>
                 <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
                   ride.status === 'Completed' ? 'bg-green-100 text-green-700' :
-                  ride.status === 'In Progress' ? 'bg-amber-100 text-amber-700' :
+                  ride.status === 'In Progress' ? 'bg-teal-100 text-amber-700' :
                   'bg-gray-100 text-gray-700'
                 }`}>
                   {ride.status}

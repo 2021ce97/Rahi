@@ -7,7 +7,7 @@ export const mockDrivers = [
 ];
 
 export const mockRides = [
-  { id: "R-9923", riderName: "Rahim H.", pickup: "PD6 Mosque", dropoff: "Kabul University", fare: 150, status: "In Progress", time: "2 min ago" },
+  { id: "R-9923", riderName: "HamRahm H.", pickup: "PD6 Mosque", dropoff: "Kabul University", fare: 150, status: "In Progress", time: "2 min ago" },
   { id: "R-9922", riderName: "Obaid S.", pickup: "Shar-e-Naw Park", dropoff: "Wazir Akbar Khan", fare: 120, status: "Completed", time: "14 min ago" },
   { id: "R-9921", riderName: "Mustafa R.", pickup: "Kabul Airport", dropoff: "Macroyan 3", fare: 300, status: "Completed", time: "45 min ago" },
   { id: "R-9920", riderName: "Bismillah", pickup: "PD3 Market", dropoff: "Karte 4", fare: 100, status: "Cancelled", time: "1 hr ago" },
@@ -46,7 +46,7 @@ export const mockTickets = [
 ];
 
 export const mockRiders = [
-  { id: "U-2001", name: "Rahim H.", phone: "+93 79 555 1234", joinDate: "2025-10-12", totalRides: 42, rating: 4.8, status: "Active", reviews: [] },
+  { id: "U-2001", name: "HamRahm H.", phone: "+93 79 555 1234", joinDate: "2025-10-12", totalRides: 42, rating: 4.8, status: "Active", reviews: [] },
   { id: "U-2002", name: "Obaid S.", phone: "+93 70 444 9876", joinDate: "2026-01-05", totalRides: 15, rating: 4.5, status: "Active", reviews: [] },
   { id: "U-2003", name: "Mustafa R.", phone: "+93 78 333 5555", joinDate: "2026-03-20", totalRides: 4, rating: 4.2, status: "Active", reviews: [] },
   { id: "U-2004", name: "Bismillah", phone: "+93 77 222 1111", joinDate: "2026-05-10", totalRides: 1, rating: 5.0, status: "Flagged", reviews: [] },

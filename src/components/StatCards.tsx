@@ -28,7 +28,7 @@ export default function StatCards() {
   const stats = [
     { title: "Active Drivers", value: statsData.activeDrivers, change: "Live", icon: <Car size={24} className="text-blue-500" />, trend: "up" },
     { title: "Ongoing Rides", value: statsData.ongoingRides, change: "Live", icon: <Route size={24} className="text-emerald-500" />, trend: "up" },
-    { title: "Commission Today (AFN)", value: statsData.commissionToday, change: "Live", icon: <DollarSign size={24} className="text-amber-500" />, trend: "down" },
+    { title: "Commission Today (AFN)", value: statsData.commissionToday, change: "Live", icon: <DollarSign size={24} className="text-teal-500" />, trend: "down" },
     { title: "Pending Verifications", value: statsData.pendingVerifications, change: "Action Needed", icon: <ShieldAlert size={24} className="text-red-500" />, trend: "neutral" },
   ];
 

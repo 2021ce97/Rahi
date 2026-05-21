@@ -38,7 +38,7 @@ export default function Drivers() {
     <div className="space-y-6 pb-6">
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold text-gray-900">Drivers Management</h1>
-        <button className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+        <button className="bg-teal-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
           + Add Driver
         </button>
       </div>
@@ -52,7 +52,7 @@ export default function Drivers() {
             <input
               type="text"
               placeholder="Search drivers by name or ID..."
-              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none"
+              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -86,7 +86,7 @@ export default function Drivers() {
                 <tr key={driver.id} className="hover:bg-gray-50 transition-colors">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 bg-amber-100 rounded-full flex items-center justify-center text-amber-700 font-bold">
+                      <div className="h-10 w-10 bg-teal-100 rounded-full flex items-center justify-center text-amber-700 font-bold">
                         {driver.name.charAt(0)}
                       </div>
                       <div>
@@ -100,7 +100,7 @@ export default function Drivers() {
                   <td className="px-6 py-4">
                     <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border ${
                       driver.status === 'online' ? 'bg-green-50 text-green-700 border-green-200' :
-                      driver.status === 'in-ride' ? 'bg-amber-50 text-amber-700 border-amber-200' :
+                      driver.status === 'in-ride' ? 'bg-teal-50 text-amber-700 border-amber-200' :
                       'bg-gray-50 text-gray-700 border-gray-200'
                     }`}>
                       {driver.status === 'online' && <CheckCircle2 size={14} />}

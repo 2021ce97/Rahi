@@ -67,7 +67,7 @@ export default function Zones() {
                     <span className={`inline-flex items-center px-2 py-1 rounded text-xs font-medium ${
                       zone.type === 'Very High Demand' ? 'bg-red-100 text-red-700' :
                       zone.type === 'High Demand' ? 'bg-orange-100 text-orange-700' :
-                      zone.type === 'Medium Demand' ? 'bg-amber-100 text-amber-700' :
+                      zone.type === 'Medium Demand' ? 'bg-teal-100 text-amber-700' :
                       'bg-green-100 text-green-700'
                     }`}>
                       {zone.type}
